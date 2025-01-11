@@ -15,7 +15,8 @@
 #### need to use caching with Redis
 
 ## Task 3
+Route ```localhost:3000/product/buy/```
 ### Simulate product purchase from ```products``` table
-- [ ] Fill the table with random data
-- [ ] A user should have a balance
-- [ ] Returns updated balance
+- [x] Fill the table with random data
+- [x] A user should have a balance
+- [x] Returns updated balance
