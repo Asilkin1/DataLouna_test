@@ -48,8 +48,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const changePassword = async (req: Request, res: Response): Promise<void> => {
-    const {userId, currentPassword, newPassword} = req.body;
-    if(!userId || !currentPassword || !newPassword){
+    const {username, currentPassword, newPassword} = req.body;
+    if(!username || !currentPassword || !newPassword){
         res.status(400).json({message: 'UserId, current password, and new password are required'});
     }
 

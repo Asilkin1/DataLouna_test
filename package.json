@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
+    "@types/node-fetch": "^2.6.12",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.3"
   }
