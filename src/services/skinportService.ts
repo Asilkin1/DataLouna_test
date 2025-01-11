@@ -1,24 +1,32 @@
 import fetch from 'node-fetch';
 import redis_client from '../utils/redis';
 
-//  Skinport API
-const SKINPORT_URL = 'https://api.skinport.com/v1/items';
-
-
 const fetchSkinportData = async(): Promise<any[]> => {
-    const url = `${SKINPORT_URL}`;
-    const response = await fetch(url);
-    if(!response.ok){
-        throw new Error(`Failed to fetch Skinport data: ${response.statusText}`);
+    const url = 'https://api.skinport.com/v1/items';
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Accept-Encoding': 'br' // required for Brotli compression
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Skinport API returned status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("FetchSkinportData");
+        console.log('Raw Skinport Data:', JSON.stringify(data, null, 2)); // Log the raw API response
+        return data;
+    } catch (error) {
+        console.error('Error fetching Skinport data:', error);
+        throw new Error('Unable to fetch Skinport data');
     }
-    return response.json();
 };
 
 const processSkinportData = (items: any[]): any[] => {
+    console.log(items)
     return items.map((item) => ({
-        name: item.name,
-        tradable_price: item.tradable ? item.tradable.price : null,
-        non_tradable_price: item.non_tradable ? item.non_tradable.price : null
+        name: item.market_hash_name
     }));
 };
 
