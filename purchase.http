@@ -1,0 +1,6 @@
+curl -X POST http://localhost:3000/product/buy/ \
+-H "Content-Type: application/json" \
+-d '{
+  "userId": 2,
+  "productId": 1
+}'
